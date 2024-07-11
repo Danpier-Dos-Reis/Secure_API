@@ -1,0 +1,32 @@
+h1{
+    font-size: 52px;
+}
+img{
+    width: 27vw; height: 27vw;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border: solid 2px black;
+    width: 50vw; height: 30vh;
+}
+
+#username, #userpassword{
+    width: 80%; height: 35px;
+    border: solid 4px darkblue;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 22px;
+}
+
+form input:last-child{
+    width: 40%; height: 25%;
+    border-radius: 15px;
+    font-size: 22px;
+}
+
+form input:last-child:active{
+    background-color: bisque;
+}

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "i/QpERgNjVixnRhrtVyjnU4Pq5wFNTvSELFZ2SgPZ4M=",
+  "Source": "backendSecureAPI",
+  "BasePath": "_content/backendSecureAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
