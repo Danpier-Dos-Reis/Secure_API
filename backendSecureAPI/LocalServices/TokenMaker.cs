@@ -18,7 +18,7 @@ namespace LocalServices
             var tokenDes = new SecurityTokenDescriptor {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user), new Claim("Password",password)
+                    new Claim(ClaimTypes.Name, user)
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(10),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(byteKey),

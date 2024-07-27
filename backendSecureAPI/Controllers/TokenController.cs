@@ -11,18 +11,17 @@ namespace Controllers{
         /// Make a token for the user
         /// </summary>
         /// <param name="username"></param>
-        /// <param name="userpassword"></param>
         /// <returns>string TOKEN</returns>
-        public string CreateToken(string username, string userpassword){
+        public string CreateToken(string username, string userKey){
             DataBaseController dbController = new DataBaseController();
             
             // Check if the database is connected
             if (dbController.IsDatabaseConnected())
             {
                 // Check if the user exists in the database
-                if (dbController.UserExist(username, userpassword))
+                if (dbController.UserExist(username))
                 {
-                    return _tokenMaker.MakeToken(_randomGenerator.CreateRandomString(),username,userpassword);
+                    return _tokenMaker.MakeToken(_randomGenerator.CreateRandomString(),username,userKey);
                 }
                 else
                 {

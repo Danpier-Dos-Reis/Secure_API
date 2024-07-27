@@ -1,3 +1,4 @@
+using System.Data;
 using System.Data.SQLite;
 
 namespace DAL
@@ -54,18 +55,18 @@ namespace DAL
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public bool RegisterUser(string username, string password)
+        public bool RegisterUser(string username, string userCryptoKey)
         {
             try
             {
                 using (var connection = new SQLiteConnection(_connectionString))
                 {
                     connection.Open();
-                    string query = "INSERT INTO Users (_Name, _Password) VALUES (@Name, @Password)";
+                    string query = "INSERT INTO Users (_Name, _Key) VALUES (@Name, @Key)";
                     using (var command = new SQLiteCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Name", username);
-                        command.Parameters.AddWithValue("@Password", password);
+                        command.Parameters.AddWithValue("@Key", userCryptoKey);
 
                         int result = command.ExecuteNonQuery();
                         return result > 0;
@@ -75,6 +76,32 @@ namespace DAL
             catch
             {
                 return false;
+            }
+        }
+
+        public DataTable GetAllEncryptedUserKeys()
+        {
+            try
+            {
+                using (var connection = new SQLiteConnection(_connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT _Name, _Key FROM Users";
+                    using (var command = new SQLiteCommand(query, connection))
+                    {
+                        using (var adapter = new SQLiteDataAdapter(command))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+                            return dataTable;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+                return null;
             }
         }
     }
